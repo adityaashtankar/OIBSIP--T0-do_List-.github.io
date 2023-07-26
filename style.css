@@ -150,6 +150,6 @@ ul li span:hover{
         width: 60%;
     }
     ul li span{
-        transform:translateX(20px)translateY(-8px);
+        transform:translateX(-80px)translateY(-8px);
     }
 }
