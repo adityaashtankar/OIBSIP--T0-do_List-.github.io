@@ -9,10 +9,12 @@ body{
    align-items: center;
 
 }
+
 .main
 {
    width: 100%;
    min-height: 100vh;
+   overflow-x: hidden;
    background-image: url(./Images/todobg.jpg);
    background-repeat: no-repeat;
    background-position: center;
@@ -117,7 +119,7 @@ ul li span {
     text-align: center;
     background-image:url(Images/trash-solid.svg);
     background-repeat: no-repeat;
-    cursor: pointer;
+   
 }
 ul li span:hover {
     animation: shake 0.5s;
@@ -150,6 +152,12 @@ ul li span:hover{
         width: 60%;
     }
     ul li span{
-        transform:translateX(-160px)translateY(-8px);
+        /* transform:translateX(-190px)translateY(0px); */
+        left:13em;
+    }
+    #list
+    {
+     background-color: red;
+     width: 60%;
     }
 }
