@@ -1,37 +1,68 @@
-const inputbox=document.getElementById('input');
-const list=document.getElementById('list');
-const button=document.getElementById('btn');
-function task(){
-    if(inputbox.value===''){
-        alert('Please write your input')
+let tasks = [];
+
+function renderTasks() {
+  const pendingList = document.getElementById('pendingList');
+  const completedList = document.getElementById('completedList');
+
+  pendingList.innerHTML = '';
+  completedList.innerHTML = '';
+
+  tasks.forEach((task, index) => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <p>${task.task}</p>
+      <span id="date">${task.date}</span>
+      <div class="actions">
+        <button id="done" onclick="completeTask(${index})"></button>
+        <button id="edit"onclick="editTask(${index})"></button>
+        <button id="delete" onclick="deleteTask(${index})"></button>
+      </div>
+    `;
+
+    if (task.completed) {
+      completedList.appendChild(li);
+    } else {
+      pendingList.appendChild(li);
     }
-    else {
-        let t=document.createElement("li");
-        t.innerHTML=inputbox.value;
-        list.appendChild(t);
-        let span=document.createElement("span");
-        span.innerHTML=" ";
-        t.appendChild(span);
-        }
-    inputbox.value='';
-    data();
+  });
 }
-list.addEventListener('click',function(e){
-    if(e.target.tagName==='LI'){
-        e.target.classList.toggle('click');
-        data();
+
+function completeTask(index) {
+  tasks[index].completed = true;
+  renderTasks();
+}
+
+function editTask(index) {
+  const editedTask = prompt('Edit task:', tasks[index]?.task || '');
+  if (editedTask !== null && editedTask.trim() !== '') {
+    tasks[index].task = editedTask;
+    renderTasks();
+  }
+}
+
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  renderTasks();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const todoForm = document.getElementById('todoForm');
+  const taskInput = document.getElementById('taskInput');
+
+  todoForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const task = taskInput.value.trim();
+    if (task !== '') {
+      const date = new Date().toLocaleString();
+      tasks.push({ task, date, completed: false });
+      renderTasks();
+      taskInput.value = '';
+     
     }
-  else if(e.target.tagName==='SPAN'){
-    e.target.parentElement.remove();
-  }},false);
 
-function data(){
-    localStorage.setItem('data', list.innerHTML);
+  });
 
-}
-function show(){
-    let data=localStorage.getItem('data');
-    list.innerHTML=data;
-}
-
+  // Initial rendering of tasks
+  renderTasks();
+});
 

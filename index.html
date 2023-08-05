@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To-do List</title>
-    <link rel="stylesheet" href="style.css" />
-    <script
-      src="https://kit.fontawesome.com/ba8260bf49.js"
-      crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <div class="main">
-      <div class="box">
-        <h1><i class="fa-solid fa-list-check"></i> Tasks</h1>
-        <div class="bar">
-          <i
-            onclick="show()"
-            class="fa-solid fa-clock-rotate-left fa-xl"
-            id="history"></i>
-          <input type="text" placeholder="Enter Task" id="input" />
-          <button id="btn" onclick="task()">Add</button>
-        </div>
-        <ul id="list"></ul>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do App</title>
+  <link rel="stylesheet" href="style.css">
+  <script
+  src="https://kit.fontawesome.com/ba8260bf49.js"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fa-solid fa-list-check"></i> Tasks</h1>
+    <form id="todoForm">
+      <input type="text" id="taskInput" placeholder="Add a new task..." required>
+      <button type="submit">ADD</button>
+    </form>
+    <div class="lists-container">
+      <div class="list" id="pendingTasks">
+        <h3>Pending</h3>
+        <ul id="pendingList"></ul>
+      </div>
+      <div class="list" id="completedTasks">
+        <h3>Completed</h3>
+        <ul id="completedList"></ul>
       </div>
     </div>
+  </div>
 
-    <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>
